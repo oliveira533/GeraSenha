@@ -1,0 +1,18 @@
+algoritmo GeraSenha
+variavel
+nValor: inteiro;
+nMin = 0;
+nMax = 9;
+nCont: inteiro;
+vSenha;
+inicio
+enquanto nCont < 8 faça
+nValor = Math.random() * (nMax - Min) + nMax;
+vSenha(nCont) = nValor;
+nCont++
+fim enquanto
+nCont--
+enquanto nCont > 0 faça
+escreva vSenha(nCont)
+nCont--
+fim
