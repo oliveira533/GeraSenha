@@ -11,12 +11,14 @@
         input
         {
             display: block;
-            width: 100%;
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 2%;
         }
         div
         {
             width: 500px;
-            height: 135px;
+            height: 200px;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -41,7 +43,8 @@
             <p>Gerador de senhas aleátórias</p>
             <input id="txbRetorna" readonly>
             <button onclick="fnGeraSenha()">Gerar senha</button>
-            <button onclick="document.all.txbRetorna.value = '';">Limpar</button>
+            <button onclick="document.all.txbRetorna.value = '';">Limpar</button> <br>
+            <input id="txbCar" type="number">
         </div>
     </body>
     <script>
@@ -49,21 +52,23 @@
          var nCont = 0;
          var nMin = 1;
          var nMax = 9;
-         var vSenha= [8];
+         var nCar = document.getElementById('txbCar').value; // perguntar pro sid pq não tá entrando valor
+         var vSenha= [nCar];
         function fnGeraSenha ()
         {
-            document.all.txbRetorna.value = "";
-            while (nCont < 8)
+            alert(document.getElementById('txbCar').value);
+            document.getElementById('txbRetorna').value = "";
+            while (nCont != nCar)
             {
             nValor = Math.random() * (nMax - nMin) + nMin;
             vSenha[nCont] = parseInt(nValor);
             nCont++;
             }
-            nCont--
-            while (nCont > 0) 
+            nCont = 0;
+            while (nCont != nCar)
             {
                 document.all.txbRetorna.value += vSenha[nCont];
-                nCont--;
+                nCont++;
             }
         }
     </script>
