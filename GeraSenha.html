@@ -45,6 +45,7 @@
             <input id="txbRetorna" readonly>
             <button onclick="fnGeraSenha()">Gerar senha</button>
             <button onclick=" location.reload();">Limpar</button> <br>
+            <input id="txbCar" type="number" placeholder="0">
         </div>
     </body>
     <script>
@@ -56,35 +57,29 @@
          var vSenha= [nCar];
 
         function fnGeraSenha(){
-            nCar = prompt('Informe q quantidade de carateres que você quer');
+            nCar = document.getElementById('txbCar').value;
             vSenha= [nCar];
             document.getElementById('txbRetorna').value = "";
-
-            if (nCar == null) {
-                alert('informe um valor');
-                location.reload();
+            
+            if (nCar < 1){
+            alert('informe um maior que zero');
+            location.reload();
             }
             else {
-                if (nCar < 0){
-                alert('informe um valor positivo');
-                location.reload();
+                if (nCar < 4){
+                    alert('Essa quantidade caracteres não é segura ');
+                    location.reload();
                 }
-                else {
-                    if (nCar < 4){
-                        alert('Essa quantidade caracteres não é segura ');
-                        location.reload();
+                else{
+                    while (nCont != nCar) {
+                        nValor = Math.random() * (nMax - nMin) + nMin;
+                        vSenha[nCont] = parseInt(nValor);
+                        nCont++;
                     }
-                    else{
-                        while (nCont != nCar) {
-                            nValor = Math.random() * (nMax - nMin) + nMin;
-                            vSenha[nCont] = parseInt(nValor);
-                            nCont++;
-                        }
-                        nCont = 0;
-                        while (nCont != nCar) {
-                            document.all.txbRetorna.value += vSenha[nCont];
-                            nCont++;
-                        }
+                    nCont = 0;
+                    while (nCont != nCar) {
+                        document.all.txbRetorna.value += vSenha[nCont];
+                        nCont++;
                     }
                 }
             }
