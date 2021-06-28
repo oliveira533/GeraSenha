@@ -43,8 +43,7 @@
             <p>Gerador de senhas aleátórias</p>
             <input id="txbRetorna" readonly>
             <button onclick="fnGeraSenha()">Gerar senha</button>
-            <button onclick="document.all.txbRetorna.value = '';">Limpar</button> <br>
-            <input id="txbCar" type="number">
+            <button onclick=" location.reload();">Limpar</button> <br>
         </div>
     </body>
     <script>
@@ -52,23 +51,41 @@
          var nCont = 0;
          var nMin = 1;
          var nMax = 9;
-         var nCar = document.getElementById('txbCar').value; // perguntar pro sid pq não tá entrando valor
+         var nCar= 0;
          var vSenha= [nCar];
-        function fnGeraSenha ()
-        {
-            alert(document.getElementById('txbCar').value);
+
+        function fnGeraSenha(){
+            nCar = prompt('Informe q quantidade de carateres que você quer');
+            vSenha= [nCar];
             document.getElementById('txbRetorna').value = "";
-            while (nCont != nCar)
-            {
-            nValor = Math.random() * (nMax - nMin) + nMin;
-            vSenha[nCont] = parseInt(nValor);
-            nCont++;
+
+            if (nCar == null) {
+                alert('informe um valor');
+                location.reload();
             }
-            nCont = 0;
-            while (nCont != nCar)
-            {
-                document.all.txbRetorna.value += vSenha[nCont];
-                nCont++;
+            else {
+                if (nCar < 0){
+                alert('informe um valor positivo');
+                location.reload();
+                }
+                else {
+                    if (nCar < 4){
+                        alert('Essa quantidade caracteres não é segura ');
+                        location.reload();
+                    }
+                    else{
+                        while (nCont != nCar) {
+                            nValor = Math.random() * (nMax - nMin) + nMin;
+                            vSenha[nCont] = parseInt(nValor);
+                            nCont++;
+                        }
+                        nCont = 0;
+                        while (nCont != nCar) {
+                            document.all.txbRetorna.value += vSenha[nCont];
+                            nCont++;
+                        }
+                    }
+                }
             }
         }
     </script>
